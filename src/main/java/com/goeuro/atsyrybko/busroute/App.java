@@ -46,45 +46,13 @@ public class App {
     public static void readFile(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader/*("./txt/test.txt"));*/(/*args[0]*/"./txt/route_data_large.txt"));
         Integer qq = Integer.valueOf(br.readLine().split(" ")[0]);
-        //String[] arrx = new String[qq];
+
         for (int i=0; i< qq;i++) {
             System.out.println("Route : " + i);
-            /*arrx[i] =*/ Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-            //arr = br.readLine().split(" ");
 
             TreeSet<Integer> set = new TreeSet<>(Arrays.<Integer>asList(Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray()));
-            /*for (int j = 1; j < arr.length; j++) {
-                set.add(Integer.valueOf(arr[j]));
-            }*/
 
             SOURCE_LIST.add(set);
-
-            /*int route  = Integer.valueOf(arr[0]);
-            for (int j = 1; j < arr.length; j++) {
-                Integer station = Integer.valueOf(arr[j]);
-                Set<Integer> set = SOURCE_MAP.get(station);
-                if (set == null) {
-                    set = new TreeSet<Integer>();
-                    set.add(route);
-                    SOURCE_MAP.put(station, set);
-
-
-                } else {
-                    set.add(route);
-                }
-            }*/
-
-            /*for (int j = 1; j < arr.length; j++) {
-                int i1=Integer.valueOf(arr[j]);
-                for (int k = j +1; k < arr.length; k++) {
-                    int i2=Integer.valueOf(arr[k]);
-                    if (i1<i2) {
-                        SOURCE_SET.add(((Double)(0.5 * (i1 + i2) * (i1 + i2 + 1) + i2)).intValue());
-                    } else {
-                        SOURCE_SET.add(((Double)(0.5 * (i2 + i1) * (i2 + i1+ 1) + i1)).intValue());
-                    }
-                }
-            }*/
 
         }
 
@@ -92,7 +60,7 @@ public class App {
 
 
 
-        System.out.print("**********************");
+        System.out.print("********** PARSED ************");
 
 
 
