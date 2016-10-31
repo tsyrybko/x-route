@@ -1,7 +1,7 @@
 package com.goeuro.atsyrybko.busroute.dto;
 
 /**
- * Created by arseni on 30.10.16.
+ *  Contains information if two stations directly connected
  */
 public class DirectConnectionDTO {
     private Integer dep_sid;
