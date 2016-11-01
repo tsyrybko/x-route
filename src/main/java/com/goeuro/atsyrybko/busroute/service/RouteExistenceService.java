@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class RouteExistenceService {
 
-    private List<TIntHashSet> routes = RoutesInfo.getInstance().getRoutes();
+    private final List<TIntHashSet> routes = RoutesInfo.getInstance().getRoutes();
 
     public Boolean isDirectlyConnected(int depSid, int arrSid) {
         TIntHashSet input = new TIntHashSet(2);

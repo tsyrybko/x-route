@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 @Path("direct")
 public class DirectConnectionController {
 
-    private RouteExistenceService routeExistenceService = new RouteExistenceService();
+    private final RouteExistenceService routeExistenceService = new RouteExistenceService();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
