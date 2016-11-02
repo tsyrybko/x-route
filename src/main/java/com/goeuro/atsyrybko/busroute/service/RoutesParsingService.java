@@ -17,10 +17,10 @@ public class RoutesParsingService {
 
     public void readFile(String filename) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(filename));
-        int qq = Integer.parseInt(br.readLine().split(" ")[0]);
+        int numberOfRoutes = Integer.parseInt(br.readLine().split(" ")[0]);
 
         RoutesInfo routesInfo = RoutesInfo.getInstance();
-        for (int i=0; i< qq;i++) {
+        for (int i=0; i< numberOfRoutes; i++) {
             String line = br.readLine();
             TIntHashSet routeInfo = getRoute(line);
             routesInfo.addRouteInfo(routeInfo);
