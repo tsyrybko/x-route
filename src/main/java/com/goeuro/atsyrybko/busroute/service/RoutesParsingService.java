@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -15,17 +16,32 @@ import java.io.IOException;
 public class RoutesParsingService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RoutesParsingService.class);
 
-    public void readFile(String filename) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filename));
-        int numberOfRoutes = Integer.parseInt(br.readLine().split(" ")[0]);
+    public void readFile(String filename) {
+        BufferedReader br = null;
 
-        RoutesInfo routesInfo = RoutesInfo.getInstance();
-        for (int i=0; i< numberOfRoutes; i++) {
-            String line = br.readLine();
-            TIntHashSet routeInfo = getRoute(line);
-            routesInfo.addRouteInfo(routeInfo);
+        try {
+            br = new BufferedReader(new FileReader(filename));
+            int numberOfRoutes = Integer.parseInt(br.readLine().split(" ")[0]);
+            RoutesInfo routesInfo = RoutesInfo.getInstance();
+            for (int i=0; i< numberOfRoutes; i++) {
+                String line = br.readLine();
+                TIntHashSet routeInfo = getRoute(line);
+                routesInfo.addRouteInfo(routeInfo);
+            }
+        } catch (FileNotFoundException e) {
+            LOGGER.error("Wrong file name. Please check the file name.", e);
+        } catch (IOException e) {
+            LOGGER.error("Error occurred during file reading.", e);
+        }finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    LOGGER.error("Oops, something wrong with I/O of the system.", e);
+                }
+            }
         }
-        br.close();
+
         LOGGER.info("Routes are parsed.");
     }
 
